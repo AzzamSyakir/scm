@@ -1,0 +1,39 @@
+@startuml diagram
+
+|Karyawan|
+start
+:Mulai;
+|#AntiqueWhite|Gudang|
+:Persiapan barang;
+:Penyimpanan barang;
+|#AntiqueWhite|Produksi|
+:Pesanan masuk;
+if (Ketersediaan bahan baku) then (ya)
+  :Mulai produksi;
+else (tidak)
+  :Tunda produksi;
+endif
+:Produksi barang;
+|#AntiqueWhite|Distribusi|
+if (Pesanan selesai diproduksi) then (ya)
+  :Kirim barang;
+  if (Barang sampai tujuan) then (ya)
+    :Update status pengiriman;
+  else (tidak)
+    :Lacak pengiriman;
+  endif
+else (tidak)
+  :Tunda pengiriman;
+endif
+|Karyawan|
+:Periksa laporan keuangan;
+if (Laporan tepat waktu) then (ya)
+  :Analisis keuangan;
+else (tidak)
+  :Cari penyebab keterlambatan;
+endif
+:Selesai;
+|Gudang|
+stop
+
+@enduml
