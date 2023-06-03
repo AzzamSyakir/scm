@@ -13,5 +13,8 @@ class Item extends Model
         'jenis',
         'jumlah',
         'harga',
+        'harga',
+        'status',
+        'id gudang'
     ];
 }

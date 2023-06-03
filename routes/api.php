@@ -22,16 +22,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 // karyawan
 Route::prefix('karyawan')->group(function () {
-    Route::post('TambahKaryawan', [GudangHome::class, 'RegisterUser']);
+    Route::post('TambahKaryawan', [KaryawanHome::class, 'RegisterUser']);
     Route::post('Login', [KaryawanHome::class, 'LoginUser']);
 });
 // gudang
 Route::prefix('gudang')->group(function () {
     Route::post('daftar gudang', [GudangHome::class, 'DaftarGudang']);
-    Route::post('Login', [KaryawanHome::class, 'LoginUser']);
+    Route::post('Login', [GudangHome::class, 'LoginUser']);
 });
 // barang
 Route::prefix('Barang')->group(function () {
     Route::post('TambahBarang', [BarangHome::class, 'AddItem'])->middleware(['auth:api']);
     Route::post('PersiapanBarang', [BarangHome::class, 'persiapanBarang'])->middleware(['auth:api']);
+    Route::post('SimpanBarang/{idBarang}', [BarangHome::class, 'SimpanBarang'])->middleware(['auth:api']);
 });
